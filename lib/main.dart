@@ -17,46 +17,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('About'),
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 12),
-            Text('Made By GPT Team (GamePavichTechnologia)'),
-          ],
-        ),
-      ),
-    );
-  }
+  State<MainPage> createState() => _MainPageState();
 }
 
-class CalculatorPage extends StatefulWidget {
-  const CalculatorPage({super.key});
-
-  @override
-  State<CalculatorPage> createState() => _CalculatorPageState();
-}
-
-class _CalculatorPageState extends State<CalculatorPage> {
+class _MainPageState extends State<MainPage> {
   final TextEditingController controller1 = TextEditingController();
   final TextEditingController controller2 = TextEditingController();
-
-  int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    
-    AboutPage(),
-  ];
 
   String resultEquals = '';
   var history = <String>[];
@@ -94,25 +64,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
-      ),
-      // body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
-        ],
       ),
       body: SafeArea(
         child: LayoutBuilder(
@@ -230,6 +181,75 @@ class _CalculatorPageState extends State<CalculatorPage> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('About'),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 12),
+            Text('Pavich Komansil 6801012610111'),
+            SizedBox(height: 12),
+            Text('Nuttapong Nakawirot 6801012610260'),
+            SizedBox(height: 12),
+            Text('Made By GPT Team (GamePavichTechnologia)'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CalculatorPage extends StatefulWidget {
+  const CalculatorPage({super.key});
+
+  @override
+  State<CalculatorPage> createState() => _CalculatorPageState();
+}
+
+class _CalculatorPageState extends State<CalculatorPage> {
+
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    MainPage(),
+    AboutPage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About',
+          ),
+        ],
       ),
     );
   }

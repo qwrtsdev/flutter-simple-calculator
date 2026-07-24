@@ -50,6 +50,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
       resultEquals = '= ${calculatedResult.toString()}';
       history.add('${controller1.text} $operator ${controller2.text} $resultEquals');
+      if (history.length > 5) {
+        history.removeAt(0);
+      }
+
+      debugPrint(history.toString());
     });
   }
 
@@ -132,7 +137,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: history.reversed
-                .take(5)
                 .map((entry) => Container(
                   margin: const EdgeInsets.only(bottom: 8),
                   padding: const EdgeInsets.all(12),

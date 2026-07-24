@@ -47,8 +47,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.calculate),
+            label: 'Calculator',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),

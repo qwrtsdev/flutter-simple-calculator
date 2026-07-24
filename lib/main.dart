@@ -43,7 +43,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
       resultEquals = '= ${calculatedResult.toString()}';
       history.add('${controller1.text} $operator ${controller2.text} $resultEquals');
-      if (history.length > 5) {
+      if (history.length > 20) {
         history.removeAt(0);
       }
 
@@ -127,12 +127,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
               ),
             ),
             const SizedBox(height: 10),
-            ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: history.reversed
-                  .take(5)
-                  .map((entry) => Container(
+            SizedBox(
+              height: 5 * 56.0,
+              child: ListView.builder(
+                itemCount: history.length,
+                itemBuilder: (context, index) {
+                  final entry = history.reversed.toList()[index];
+                  return Container(
                     margin: const EdgeInsets.only(bottom: 8),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -141,8 +142,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       border: Border.all(color: Colors.grey[300]!),
                     ),
                     child: Text(entry.toString()),
-                  ))
-                  .toList(),
+                  );
+                },
+              ),
             ),
           ],
         ),

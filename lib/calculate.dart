@@ -18,5 +18,5 @@ double calculate(double num1, String operation, double num2) {
         answer = num1 / num2;
         break;
     }
-    return answer;
+    return double.parse(answer.toStringAsFixed(4));
 }

@@ -14,6 +14,8 @@ class _AboutPageState extends State<AboutPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text('App by GPT (GamePavichTechnologia)', style: TextStyle(fontSize: 18)),
+          SizedBox(height: 10),
           Text('นัทธพงศ์ นาคะวิโรจน์ 6801012610260', style: TextStyle(fontSize: 18)),
           SizedBox(height: 10),
           Text('ภาวิช กอหมั่นศิลป์ 6801012610111', style: TextStyle(fontSize: 18)),

@@ -1,2 +1,2 @@
 # flutter-simple-calculator
-## By GPT Team (GamePavichTechnology)
+## By GPT Team (GamePavichTechnologia)

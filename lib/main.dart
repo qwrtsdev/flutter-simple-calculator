@@ -32,9 +32,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   String resultEquals = '';
   var history = <String>[];
+  var operator = '';
 
   void handleClick(String operator) {
     setState(() {
+      this.operator = operator;
       var calculatedResult = calculate(
         double.tryParse(controller1.text) ?? 0,
         operator,
@@ -88,7 +90,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         ),
                       ),
                       const SizedBox(width: 10),
-
+                      Text(
+                        operator,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: TextField(
                           controller: controller2,

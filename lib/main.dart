@@ -50,6 +50,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
       debugPrint(history.toString());
     });
   }
+  
+  void clear() {
+    setState(() {
+      history.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +163,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () => clear(),
+                    child: const Text('Clear History', style: TextStyle(fontSize: 15)),
+                  ),
+                  const SizedBox(height: 20),
                   Text(
                     "Made By GPT Team (GamePavichTechnologia)",
                     style: const TextStyle(

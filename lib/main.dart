@@ -54,100 +54,108 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: controller1,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: 'First Number',
-                      border: OutlineInputBorder(),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: controller1,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            labelText: 'First Number',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+
+                      Expanded(
+                        child: TextField(
+                          controller: controller2,
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            labelText: 'Second Number',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+
+                      Text(
+                        resultEquals,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => handleClick('+'),
+                        child: const Text('+', style: TextStyle(fontSize: 20)),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => handleClick('-'),
+                        child: const Text('-', style: TextStyle(fontSize: 20)),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => handleClick('*'),
+                        child: const Text('*', style: TextStyle(fontSize: 20)),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => handleClick('/'),
+                        child: const Text('/', style: TextStyle(fontSize: 20)),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+
+                  Text(
+                    "History",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
-                const SizedBox(width: 10),
-
-                Expanded(
-                  child: TextField(
-                    controller: controller2,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: 'Second Number',
-                      border: OutlineInputBorder(),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 5 * 56.0,
+                    child: ListView.builder(
+                      itemCount: history.length,
+                      itemBuilder: (context, index) {
+                        final entry = history.reversed.toList()[index];
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 8),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.grey[100],
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(color: Colors.grey[300]!),
+                          ),
+                          child: Text(entry.toString()),
+                        );
+                      },
                     ),
                   ),
-                ),
-                const SizedBox(width: 10),
-
-                Text(
-                  resultEquals,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () => handleClick('+'),
-                  child: const Text('+', style: TextStyle(fontSize: 20)),
-                ),
-                ElevatedButton(
-                  onPressed: () => handleClick('-'),
-                  child: const Text('-', style: TextStyle(fontSize: 20)),
-                ),
-                ElevatedButton(
-                  onPressed: () => handleClick('*'),
-                  child: const Text('*', style: TextStyle(fontSize: 20)),
-                ),
-                ElevatedButton(
-                  onPressed: () => handleClick('/'),
-                  child: const Text('/', style: TextStyle(fontSize: 20)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            Text(
-              "History",
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 5 * 56.0,
-              child: ListView.builder(
-                itemCount: history.length,
-                itemBuilder: (context, index) {
-                  final entry = history.reversed.toList()[index];
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 8),
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[100],
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.grey[300]!),
-                    ),
-                    child: Text(entry.toString()),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

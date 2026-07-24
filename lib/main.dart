@@ -156,6 +156,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  Text(
+                    "Made By GPT Team (GamePavichTechnologia)",
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ],
               ),
             ),

@@ -9,7 +9,7 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,6 +20,13 @@ class AboutPage extends StatelessWidget {
             Text('Nuttapong Nakawirot 6801012610260'),
             SizedBox(height: 12),
             Text('Made By GPT Team (GamePavichTechnologia)'),
+            SizedBox(height: 20),
+            Image.asset(
+              'assets/test.png',
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
           ],
         ),
       ),
